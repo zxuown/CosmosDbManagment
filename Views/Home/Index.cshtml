@@ -1,0 +1,17 @@
+﻿@using CosmosDbManagment.Models;
+@*
+  
+
+*@
+@{
+    Layout = "_ManagmentLayout";
+}
+@model List<Project>
+@{
+    <div>Hello!</div>
+    <a href="/project" class="btn btn-primary">Projects</a>
+    @if (Model.Count > 0)
+    {
+        <a href="/task" class="btn btn-primary">Tasks</a>
+    }
+}

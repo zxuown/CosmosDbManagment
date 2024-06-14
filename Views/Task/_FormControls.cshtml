@@ -1,0 +1,53 @@
+﻿@using CosmosDbManagment.Models;
+
+@model List<Project>
+
+@{
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Create Task</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/task/create" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" id="Name" name="Name" class="form-control" placeholder="Enter task name" required>
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" name="Description" class="form-control" placeholder="Enter task description" required>
+                </div>
+                <div class="form-group">
+                    <label for="CreatedDate">Created Date</label>
+                    <input type="date" id="CreatedDate" name="CreatedDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="DueDate">Due Date</label>
+                    <input type="date" id="DueDate" name="DueDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <input type="text" id="Status" name="Status" class="form-control" placeholder="Enter task status" required>
+                </div>
+                <div class="form-group">
+                    <label for="ProjectId">Project select</label>
+                    <select class="form-control" id="ProjectId" name="ProjectId">
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="AssignedTo">Assigned To</label>
+                    <input type="text" id="AssignedTo" name="AssignedTo" class="form-control" placeholder="Enter assigned user" required>
+                </div>
+                <a class="btn btn-danger" href="/task">Back</a>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

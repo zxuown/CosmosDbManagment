@@ -1,0 +1,69 @@
+﻿@using CosmosDbManagment.Models
+@model List<Project>
+
+@{
+    Layout = "_ManagmentLayout";
+    int totalPages = ViewBag.TotalPages;
+    int currentPage = ViewBag.CurrentPage;
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Projects</h1>
+        <a href="/project/create" class="btn btn-primary">Create Project</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@item.EndDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a href="/project/edit/@item.Id" class="btn btn-sm btn-secondary">Edit</a>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteProject('@item.Id')">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { pageNumber = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+<script>
+    function deleteProject(projectId) {
+        if (confirm('Are you sure you want to delete this project?')) {
+            fetch(`/project/delete/${projectId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    location.reload();
+                    return response.json();
+                });
+        }
+    }
+</script>
+

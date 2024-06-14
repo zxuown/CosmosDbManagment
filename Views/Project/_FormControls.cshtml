@@ -1,0 +1,24 @@
+﻿@using CosmosDbManagment.Models;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="form-group">
+    <label>Name</label>
+    <input type="text" name="Name" class="form-control" placeholder="Enter project name">
+</div>
+<div class="form-group">
+    <label>Description</label>
+    <input type="text" name="Description" class="form-control" placeholder="Enter project description">
+</div>
+<div class="form-group">
+    <label>Start date</label>
+    <input type="date" name="StartDate" class="form-control" placeholder="Enter project start date">
+</div>
+<div class="form-group">
+    <label>End date</label>
+    <input type="date" name="EndDate" class="form-control" placeholder="Enter project end date">
+</div>
+<a class="btn btn-danger" href="/project">Back</a>
+<button type="submit" class="btn btn-primary">Save</button>
